@@ -163,17 +163,27 @@ export default function Cluster2DPlot({ data }: Cluster2DPlotProps) {
 
     const texts = data.map(
       (kode_saham) =>
-        `<b>${kode_saham.kode_saham}</b><br>` +
+        `<b>${kode_saham.nama_perusahaan} (${kode_saham.kode_saham})</b><br>` +
         `<b>Cluster ${kode_saham.cluster}</b><br><br>` +
-        `📊 <b>Economic Indicators:</b><br>` +
-        `• DPR: ${(kode_saham.dpr * 100).toFixed(1)}%<br>` +
+        `📈  <b>Profitability / Return:</b><br>` +
+        `• GPM: ${(kode_saham.gpm * 100).toFixed(1)}%<br>` +
         `• EBITDA: ${(kode_saham.ebitda * 100).toFixed(2)}%<br>` +
-        `• NPM: ${(kode_saham.npm * 100).toFixed(1)}%<br>` +
-        `• CR: ${(kode_saham.cr * 100).toFixed(2)}%<br><br>` +
-        `📈 <b>Additional Metrics:</b><br>` +
-        `• ROE: ${(kode_saham.roe * 100).toFixed(1)}%<br>` +
-        `• ROA: ${kode_saham.roa.toFixed(2)}<br>` +
-        `• ROIC: ${kode_saham.roic.toFixed(2)}<br>`
+        `• OPM: ${(kode_saham.opm * 100).toFixed(1)}%<br>` +
+        `• NPM  : ${(kode_saham.npm * 100).toFixed(2)}%<br>` +
+        `• ROE  : ${(kode_saham.roe * 100).toFixed(2)}%<br>` +
+        `• ROA  : ${(kode_saham.roa * 100).toFixed(2)}%<br>` +
+        `• ROIC  : ${(kode_saham.roic * 100).toFixed(2)}%<br>` +
+        `📊<b>Financial Strength / Leverage:</b><br>` +
+        `• DAR: ${(kode_saham.dar * 100).toFixed(1)}%<br>` +
+        `• DER: ${(kode_saham.der * 100).toFixed(1)}%<br>` +
+        `• ICR: ${kode_saham.icr.toFixed(2)}<br>` +
+        `• DPR: ${(kode_saham.dpr * 100).toFixed(1)}%<br>` +
+        `📊<b>Dupont / Earning Power:</b><br>` +
+        `• AT: ${kode_saham.at.toFixed(2)}<br>` +
+        `📊<b>Liquidity:</b><br>` +
+        `• CR: ${kode_saham.cr.toFixed(2)}<br>` +
+        `• QR: ${kode_saham.qr.toFixed(2)}<br>` +
+        `• WCTA: ${kode_saham.wcta.toFixed(2)}<br>`
     );
 
     // Create discrete colorscale for clusters
@@ -191,6 +201,9 @@ export default function Cluster2DPlot({ data }: Cluster2DPlotProps) {
       y,
       mode: "markers",
       type: "scatter",
+      hoverlabel: {
+        align: "left",
+      },
       marker: {
         size: sizes,
         color: colors,
@@ -225,6 +238,9 @@ export default function Cluster2DPlot({ data }: Cluster2DPlotProps) {
 
     // Set layout
     setLayout({
+      hoverlabel: {
+        align: "left",
+      },
       // title: {
       //   text: "Visualisasi PCA 2D",
       //   font: {
