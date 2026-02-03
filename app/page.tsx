@@ -3,31 +3,23 @@
 import { useState, useEffect } from "react";
 import Cluster2DPlot from "./components/Cluster2DPlot";
 
-interface KodeSahamData {
-  kode_saham: string;
-  nama_perusahaan: string;
+interface BUMN {
+  NAMA_PERUSAHAAN: string;
   PC1: number;
   PC2: number;
-  cluster: number;
-  gpm: number;
-  ebitda: number;
-  opm: number;
-  npm: number;
-  roe: number;
-  roa: number;
-  roic: number;
-  dar: number;
-  der: number;
-  icr: number;
-  dpr: number;
-  at: number;
-  cr: number;
-  qr: number;
-  wcta: number;
+  CLUSTER: number;
+  OPM: number;
+  NPM: number;
+  ROE: number;
+  ROA: number;
+  DAR: number;
+  DER: number;
+  CR: number;
+  TATO: number;
 }
 
 export default function Dashboard() {
-  const [data, setData] = useState<KodeSahamData[]>([]);
+  const [data, setData] = useState<BUMN[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
